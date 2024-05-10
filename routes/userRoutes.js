@@ -17,5 +17,9 @@ user_route.post('/register',userController.insertUser);
 user_route.get('/',userController.loginLoad);
 user_route.get('/login',userController.loginLoad);
 
+user_route.post('/login',userController.verifyLogin);
+
+user_route.get('/home',userController.loadHome);
+
 
 module.exports = user_route;

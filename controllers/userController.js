@@ -51,8 +51,40 @@ const loginLoad = async(req,res)=> {
     }
 }
 
+const verifyLogin = async(req,res)=> {
+    try {
+        const email = req.body.email;
+        const password = req.body.password;
+
+        const userdata = await User.findOne({email:email});
+
+        if (userdata) {
+            const passwordMatch = await bcrypt.compare(password,userdata.password);
+            if (passwordMatch) {
+                res.redirect('/home');
+            } else {
+                res.render('login',{message:"Email and password are incorrect"});
+            }
+        }else{
+            res.render('login',{message:"Email and password are incorrect"});
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const loadHome = async(req,res) => {
+    try {
+        res.render('home');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadRegister,
     insertUser,
-    loginLoad
+    loginLoad,
+    verifyLogin,
+    loadHome
 }
