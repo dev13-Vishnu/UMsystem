@@ -1,4 +1,5 @@
-const user = require('../models/userModel');
+const User = require('../models/userModel');
+
 
 const loadRegister = async(req,res) => {
     try {
@@ -10,7 +11,7 @@ const loadRegister = async(req,res) => {
     }
 }
 
-const insertUser = async(res,req)=> {
+const insertUser = async(req,res)=> {
     try {
         const user = new User({
             name:req.body.name,
@@ -28,7 +29,7 @@ const insertUser = async(res,req)=> {
         }
 
     } catch (error) {
-        console.log(error.message);
+        console.error(error);
     }
 }
 

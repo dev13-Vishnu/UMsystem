@@ -7,7 +7,7 @@ const app = express();
 // for Routes
 const userRoute = require('./routes/userRoutes');
 app.use('/',userRoute);
-
+ 
 app.listen(3001,()=>{
     console.log("Server is running...");
 })
