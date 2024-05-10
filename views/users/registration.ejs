@@ -12,11 +12,16 @@
     <br><br>
     <input type="submit" value="Register" id="">
 </form>
+
+
 <% 
-if(typeof message !== 'undifined') {
+
+if (typeof message !== 'undefined') {
     %>
-    <p style="color: green;"> <%= message %> </p>
-<%
+        <p style="color: green;"><%= message %></p>
+    <%
 }
+
 %>
+
 <% include('../layouts/footer.ejs') %>
