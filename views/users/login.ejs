@@ -4,7 +4,7 @@
 
 <% 
     if (typeof message !== 'undefined') {
-        >%
+        %>
         <h4><%= message %></h4>
         <%
     }
@@ -12,9 +12,9 @@
 %>
 
 <form action="/login">
-    <input type="email" name="email" placeholder="Enter email">
+    <input type="email" name="email" required placeholder="Enter email">
     <br><br>
-    <input type="password" name="password" placeholder="Enter Password">
+    <input type="password" name="password" required placeholder="Enter Password">
     <br><br>
     <input type="submit" value="Login">
     <br><br>
