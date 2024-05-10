@@ -56,11 +56,12 @@ const verifyLogin = async(req,res)=> {
         const email = req.body.email;
         const password = req.body.password;
 
-        const userdata = await User.findOne({email:email});
+        const userData = await User.findOne({email:email});
 
-        if (userdata) {
-            const passwordMatch = await bcrypt.compare(password,userdata.password);
+        if (userData) {
+            const passwordMatch = await bcrypt.compare(password,userData.password);
             if (passwordMatch) {
+                req.session.user_id = userData._id;
                 res.redirect('/home');
             } else {
                 res.render('login',{message:"Email and password are incorrect"});
