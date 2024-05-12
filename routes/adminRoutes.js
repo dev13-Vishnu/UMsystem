@@ -16,13 +16,12 @@ const auth = require('../middlewares/adminAuth');
 
 const adminController = require('../controllers/adminController');
 
-admin_route.get('/',adminController.loadLogin);
+admin_route.get('/',auth.isLogout,adminController.loadLogin);
 admin_route.post('/',adminController.verifyLogin);
 
-admin_route.get('/home',adminController.loadDashboard);
+admin_route.get('/home',auth.isLogin,adminController.loadDashboard);
 
-admin_route.get('/logout',adminController.logout);
-
+admin_route.get('/logout',auth.isLogin,adminController.logout);
 
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin');
