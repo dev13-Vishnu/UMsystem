@@ -23,7 +23,11 @@ admin_route.get('/home',auth.isLogin,adminController.loadDashboard);
 
 admin_route.get('/logout',auth.isLogin,adminController.logout);
 
-admin_route.get('/dashboard',auth.isLogin,adminController.adminDashboard)
+admin_route.get('/dashboard',auth.isLogin,adminController.adminDashboard);
+
+admin_route.get('/new-user',auth.isLogin,adminController.newUserload);
+
+admin_route.post('/new-user',adminController.addUser);
 
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin');
