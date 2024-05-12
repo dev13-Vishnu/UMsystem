@@ -1,6 +1,19 @@
 <% include('../layouts/header.ejs') %>
 
-<h1>Welcome to homepage</h1>
+<h1>Welcome ,<%= user.name %></h1>
+
+<table width=" 50%">
+    <tr>
+        <td>Email</td>
+        <td><%= user.email %></td>
+    </tr>
+    <tr>
+        <td>phone number</td>
+        <td><%= user.phone %></td>
+    </tr>
+</table>
+
+
 
 <a href="/logout">Log out</a>
 
