@@ -107,7 +107,7 @@ const addUser = async(req,res) =>{
         const name = req.body.name;
         const email = req.body.email;
         const phone = req.body.phno;
-        const password = randomstring.generate(8);
+        const password = req.body.password;
 
         const spassword = await securePassword(password);
 
