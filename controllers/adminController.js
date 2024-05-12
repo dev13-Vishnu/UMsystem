@@ -45,7 +45,8 @@ const verifyLogin = async(req,res)=>{
 const loadDashboard = async(req,res) =>{
 
     try {
-        res.render('home');
+        const userData = await User.findById({_id:req.session.user_id});
+        res.render('home',{admin:userData});
     } catch (error) {
         console.log(error.message);
     }
@@ -55,6 +56,7 @@ const logout = async (req,res) => {
     
 
     try {
+        
         req.session.destroy();
         res.redirect('/admin')
     } catch (error) {

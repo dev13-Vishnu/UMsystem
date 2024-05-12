@@ -23,6 +23,8 @@ admin_route.get('/home',auth.isLogin,adminController.loadDashboard);
 
 admin_route.get('/logout',auth.isLogin,adminController.logout);
 
+admin_route.get('/dashboard',auth.isLogin,adminController.adminDashboard)
+
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin');
 })
