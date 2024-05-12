@@ -17,13 +17,55 @@ const verifyLogin = async(req,res)=>{
         const email = req.body.email;
         const password = req.body.password;
 
-    
+        const userData = await User.findOne({email:email});
+
+        if (userData) {
+
+            const passwordMatch = await bcrypt.compare(password,userData.password);
+            if (passwordMatch) {
+                if (userData.is_admin === 0) {
+                    res.render('login',{message:"Email and password is incorrect"});
+                } else {
+                    req.session.user_id = userData._id;
+                    res.redirect('/admin/home');
+                }
+            } else {
+                res.render('login',{ message:"Email and password is incorrect"})
+            }
+
+        } else {
+            res.render('login',{message:"Email and password are incorrect"});
+        }
         
     } catch (error) {
         console.log(error.message);
     }
 }
 
+const loadDashboard = async(req,res) =>{
+
+    try {
+        res.render('home');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const logout = async (req,res) => {
+    
+
+    try {
+        req.session.destroy();
+        res.redirect('/admin')
+    } catch (error) {
+        console.log(error.message);
+    }
+
+}
+
 module.exports ={
-    loadLogin
+    loadLogin,
+    verifyLogin,
+    loadDashboard,
+    logout
 }

@@ -12,14 +12,21 @@ admin_route.use(bodyparser.urlencoded({extended:true}));
 admin_route.set('view engine','ejs');
 admin_route.set('views','./views/admin');
 
+const auth = require('../middlewares/adminAuth');
+
 const adminController = require('../controllers/adminController');
 
 admin_route.get('/',adminController.loadLogin);
+admin_route.post('/',adminController.verifyLogin);
+
+admin_route.get('/home',adminController.loadDashboard);
+
+admin_route.get('/logout',adminController.logout);
+
+
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin');
 })
-
-admin_route.post('/',adminController.verifyLogin);
 
 
 module.exports = admin_route;
