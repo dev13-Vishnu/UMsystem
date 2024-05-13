@@ -92,11 +92,44 @@ const userLogout = async (req,res)=> {
     }
 }
 
+// user profile edit & update
+
+const editLoad = async (req, res) => {
+    try {
+        
+        const id = req.query.id;
+        const userData= await User.findById({_id:id});
+
+        if (userData) {
+            res.render('edit',{user:userData});
+        } else {
+            res.redirect('/home ')
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const updateProfile = async (req,res) => {
+
+    try {
+
+        const userDasta = await User.findByIdAndUpdate({_id: req.body.id},{$set:{name:req.body.name,email:req.body.email,phone:req.body.phno}});
+        res.redirect('/home')
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loadRegister,
     insertUser,
     loginLoad,
     verifyLogin,
     loadHome,
-    userLogout
+    userLogout,
+    editLoad,
+    updateProfile
 }
