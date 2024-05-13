@@ -152,6 +152,7 @@ const editUserLoad = async (req,res) => {
     }
 }
 
+
 const updateUser = async(req,res)=>{
 
     try {
@@ -164,6 +165,20 @@ const updateUser = async(req,res)=>{
     }
 }
 
+// delete user
+
+const deleteUser = async(req,res) =>{
+
+    try {
+        
+        const id =req.query.id;
+        console.log(id);
+        await User.deleteOne({_id:id});
+        res.redirect('/admin/dashboard')
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 module.exports ={
     loadLogin,
@@ -174,5 +189,6 @@ module.exports ={
     newUserload,
     addUser,
     editUserLoad,
-    updateUser
+    updateUser,
+    deleteUser
 }
