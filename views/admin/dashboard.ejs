@@ -11,7 +11,7 @@
         <th><%= users.name %></th>
         <th>Email</th>
         <th>Phone number</th>
-
+        <th>Action</th>
     </tr>
 
     <% if (users.length >0) {
@@ -21,6 +21,7 @@
                 <td><%=users[i].name %></td>
                 <td><%=users[i].email %></td>
                 <td><%=users[i].phone %></td>
+                <td> <a href="/admin/edit-user?id=<%= users[i]._id %>">Edit</a></td>
             </tr>
             <%
         }

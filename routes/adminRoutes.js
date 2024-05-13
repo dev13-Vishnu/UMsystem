@@ -29,6 +29,11 @@ admin_route.get('/new-user',auth.isLogin,adminController.newUserload);
 
 admin_route.post('/new-user',adminController.addUser);
 
+admin_route.get('/edit-user',auth.isLogin,adminController.editUserLoad);
+
+admin_route.post('/edit-user',adminController.updateUser);
+
+
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin');
 })
