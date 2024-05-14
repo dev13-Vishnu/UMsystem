@@ -33,7 +33,7 @@ const insertUser = async(req,res)=> {
         const userData = await user.save();
         
         if (userData) {
-            res.render('login',{message:"Youre registration has been compleated successfully"});
+            res.render('login',{message:"Congratulations,you're account has been created Log in to continue"});
         }else{
             res.render('registration',{message:"Youre registration failed"});
         }
