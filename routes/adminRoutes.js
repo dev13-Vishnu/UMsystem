@@ -35,9 +35,9 @@ admin_route.post('/edit-user',adminController.updateUser);
 
 admin_route.get('/delete-user',adminController.deleteUser);
 
-admin_route.get('*',(req,res)=>{
-    res.redirect('/admin');
-})
+// admin_route.get('*',(req,res)=>{
+//     res.redirect('/admin');
+// })
 
 
 module.exports = admin_route;

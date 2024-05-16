@@ -230,14 +230,14 @@
 
           <form class="form" method="post" action="">
             <div class="inputBox">
-              <input type="text" required placeholder="Enter Name" name="username" value="<%= user.name %>" /> 
+              <input type="text" required  name="name" value="<%= user.name %>" /> <i>Name</i>
             </div>
             <div class="inputBox">
-              <input type="email" required placeholder="Enter Emai" name="email" value="<%= user.email %>" /> 
+              <input type="email" required  name="email" value="<%= user.email %>" /> <i>Email</i>
             </div>
 
             <div class="inputBox">
-              <input type="text" required placeholder="Enter Phone Number" name="phno" value="<%= user.phone %>" /> 
+              <input type="text" required name="phno" value="<%= user.phone %>" /> <i>Phone Number</i>
             </div>
             <input type="hidden" name="id" value="<%= user._id %>">
 

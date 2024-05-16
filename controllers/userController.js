@@ -45,6 +45,9 @@ const insertUser = async(req,res)=> {
 
 const loginLoad = async(req,res)=> {
     try {
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    res.setHeader("Expires", "0"); // Proxies
         res.render('login');
     } catch (error) {
         console.log(error.message);
@@ -75,7 +78,9 @@ const verifyLogin = async(req,res)=> {
 }
 
 const loadHome = async(req,res) => {
-    try {
+    try {res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    res.setHeader("Expires", "0"); // Proxies
         const userData = await User.findById({_id: req.session.user_id});
         res.render('home',{user: userData});
     } catch (error) {

@@ -17,6 +17,9 @@ const securePassword = async(password) =>{
 const loadLogin = async(req,res)=> {
     
     try {
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    res.setHeader("Expires", "0"); // Proxies
         res.render('login');
 
     } catch (error) {
@@ -58,6 +61,9 @@ const verifyLogin = async(req,res)=>{
 const loadDashboard = async(req,res) =>{
 
     try {
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    res.setHeader("Expires", "0"); // Proxies
         const userData = await User.findById({_id:req.session.user_id});
         res.render('home',{admin:userData});
     } catch (error) {
