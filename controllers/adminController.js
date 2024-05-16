@@ -87,6 +87,9 @@ const logout = async (req,res) => {
 const adminDashboard= async (req,res) => {
 
     try {
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    res.setHeader("Expires", "0"); // Proxies
         const usersData = await User.find({is_admin:0});
         res.render('dashboard',{users:usersData})
 
