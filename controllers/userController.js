@@ -101,7 +101,9 @@ const userLogout = async (req,res)=> {
 
 const editLoad = async (req, res) => {
     try {
-        
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    res.setHeader("Expires", "0"); // Proxies
         const id = req.query.id;
         const userData= await User.findById({_id:id});
 
