@@ -21,6 +21,11 @@ const loadRegister = async(req,res) => {
 } 
 
 const insertUser = async(req,res)=> {
+    const mailId = req.body.email;
+const existing = await User.findOne({email:mailId});
+if (existing) {
+    res.render('registration',{message:"User already exists. Try a different Email address"});
+} else {
     try {
         const spassword = await securePassword(req.body.password);
         const user = new User({
@@ -33,6 +38,7 @@ const insertUser = async(req,res)=> {
         const userData = await user.save();
         
         if (userData) {
+    
             res.render('login',{message:"Congratulations,you're account has been created Log in to continue"});
         }else{
             res.render('registration',{message:"Youre registration failed"});
@@ -41,6 +47,7 @@ const insertUser = async(req,res)=> {
     } catch (error) {
         console.log(error.message);
     }
+}
 }
 
 const loginLoad = async(req,res)=> {
